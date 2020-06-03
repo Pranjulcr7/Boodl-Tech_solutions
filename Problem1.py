@@ -4,7 +4,7 @@ Assumptions:
     2. Return none if no solution exists
 
 Algorithm:
-    1. Making list of (n, index) pairs and sorting them according to n
+    1. Making list of (value, index) pairs and sorting them according to value
     2. Using two pointers left and right, with initial n 0 and length of array - 1,
      to traverse the array.
     3. While left < right :
@@ -16,6 +16,9 @@ Algorithm:
            decrement right to decrease current sum
     4.return result
 
+Time complexity : O(n*log(n)) # sorting: n*log(n) + solution: n
+
+Space complexity : O(n) #using new variable to for sorted array else O(1)
 """
 
 
@@ -28,16 +31,21 @@ def sum_to_n(elements: list, target: int):
     :return: list of two integers
     """
 
+    # making (value, index) pairs and sorting according value 
     sorted_elements = sorted(
-        [{'n': value, 'index': index} for index, value in enumerate(elements)],
-        key=lambda x: x.get('n')
+        [{'value': value, 'index': index} for index, value in enumerate(elements)],
+        key=lambda x: x.get('value')
     )
+
+    # left and right pointer 
     left, right = 0, len(elements) - 1
+
+    # result variable
     result = None
 
     while left < right:
 
-        curr_sum = sorted_elements[left].get('n') + sorted_elements[right].get('n')
+        curr_sum = sorted_elements[left].get('value') + sorted_elements[right].get('value')
 
         if curr_sum == target:
             result = [

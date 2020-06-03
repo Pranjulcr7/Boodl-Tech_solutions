@@ -12,6 +12,10 @@ Algorithm:
         d. remove first and last element from n
         e. divide divisor by 100
     3. return True
+
+Time complexity : O(log(n))
+
+Space complexity : O(1)
 """
 
 from math import log10
